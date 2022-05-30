@@ -104,7 +104,7 @@ export default {
       ],
       tiposFiltro: [
         { value: null, text: 'Selecione uma tipo' },
-        { value: 'contains', text: 'Contém' },
+        { value: 'icontains', text: 'Contém' },
         { value: 'istartswith', text: 'Começa com' },
         { value: 'iendswith', text: 'Termina com' }
       ],
