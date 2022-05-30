@@ -7,6 +7,9 @@
     >
       <b-card-text>
         <b-form @submit.prevent="onSubmit" @reset="onReset">
+          <b-alert v-if="error.msg != ''" show variant="warning">
+            {{ error.msg }}
+          </b-alert>
           <b-form-group
             id="input-group-1"
             label="Usuário: "
@@ -40,28 +43,33 @@
 </template>
 <script>
 export default {
+
+  auth: false,
+
   data () {
     return {
       form: {
         username: '',
         password: ''
+      },
+      error: {
+        msg: ''
       }
     }
   },
   methods: {
     async onSubmit () {
-      await this.$axios.$post('/api/token/',
-        {
-          username: this.form.username,
-          password: this.form.password
+      try {
+        await this.$auth
+          .loginWith('local', {
+            data: this.form
+          })
+        this.$router.push('/')
+      } catch (error) {
+        if (error.response.status === 401) {
+          this.error.msg = error.response.data.detail
         }
-      )
-        .then(function (response) {
-          console.log(response)
-        })
-        .catch(function (error) {
-          console.log(error)
-        })
+      }
     },
     onReset () {
       this.form.username = ''
