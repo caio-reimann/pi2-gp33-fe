@@ -1,7 +1,9 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
+  env: {
+    APIURL: process.env.APIURL || 'http://localhost:8000'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'pi2-33-fe',
@@ -51,7 +53,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: process.env.APIURL || 'http://localhost:8000'
+    baseURL: process.env.APIURL
   },
 
   router: {
