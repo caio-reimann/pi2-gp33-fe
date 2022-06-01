@@ -10,10 +10,10 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item-dropdown text="Pesquisas">
-            <b-dropdown-item href="#">
+            <b-dropdown-item @click="carregaCarregarPesquisa">
               Incluir
             </b-dropdown-item>
-            <b-dropdown-item @click="carregaPagina('PesquisaView')">
+            <b-dropdown-item @click="carregaPesquisaView">
               Visualizar
             </b-dropdown-item>
           </b-nav-item-dropdown>
@@ -42,6 +42,9 @@
           <div v-if="paginas.PesquisaView">
             <PesquisaView />
           </div>
+          <div v-if="paginas.CarregarPesquisa">
+            <CarregarPesquisa />
+          </div>
         </b-col>
       </b-row>
     </b-container>
@@ -50,15 +53,16 @@
 <script>
 
 import PesquisaView from '~/components/PesquisaView.vue'
+import CarregarPesquisa from '~/components/CarregarPesquisa.vue'
 
 export default {
   name: 'IndexPage',
-  components: { PesquisaView },
+  components: { PesquisaView, CarregarPesquisa },
   data () {
     return {
       paginas: {
         PesquisaView: false,
-        PesquisaAdd: false
+        CarregarPesquisa: false
       }
     }
   },
@@ -69,10 +73,15 @@ export default {
       } catch (error) {
         console.log(error)
       }
-      // this.$router.push('/TheLogin')
+      this.$router.push('/TheLogin')
     },
-    carregaPagina (pagina) {
+    carregaPesquisaView (pagina) {
       this.paginas.PesquisaView = true
+      this.paginas.CarregarPesquisa = false
+    },
+    carregaCarregarPesquisa (pagina) {
+      this.paginas.PesquisaView = false
+      this.paginas.CarregarPesquisa = true
     }
   }
 }
