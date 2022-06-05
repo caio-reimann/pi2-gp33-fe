@@ -4,7 +4,14 @@
       <b-navbar-brand href="#">
         PI2 - Grupo 33
       </b-navbar-brand>
-
+          <b-button-group size="sm" class="mr-3">
+            <b-button variant="warning" @click="aumentarFonte">
+              A+
+            </b-button>
+            <b-button variant="warning" @click="diminuirFonte">
+              A-
+            </b-button>
+          </b-button-group>
       <b-navbar-toggle target="nav-collapse" />
 
       <b-collapse id="nav-collapse" is-nav>
@@ -24,11 +31,8 @@
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
             <template #button-content>
-              <em>Usuário</em>
+              <em>{{ $auth.user }}</em>
             </template>
-            <b-dropdown-item href="#">
-              Meus dados
-            </b-dropdown-item>
             <b-dropdown-item @click="logout">
               Sair
             </b-dropdown-item>
@@ -63,10 +67,18 @@ export default {
       paginas: {
         PesquisaView: false,
         CarregarPesquisa: false
-      }
+      },
+      fontSize: 14
     }
   },
+  async fetch () {
+    await this.alteraFonte()
+  },
   methods: {
+    async alteraFonte () {
+      this.fontSize = await this.$store.state.font.font_size
+      document.getElementsByTagName('html')[0].style.fontSize = this.fontSize + 'px'
+    },
     async logout () {
       try {
         await this.$auth.logout()
@@ -82,6 +94,16 @@ export default {
     carregaCarregarPesquisa (pagina) {
       this.paginas.PesquisaView = false
       this.paginas.CarregarPesquisa = true
+    },
+    async aumentarFonte () {
+      await this.$store.commit('font/AUMENTA_FONTE')
+      await this.alteraFonte()
+      console.log(this.fontSize)
+    },
+    async diminuirFonte () {
+      await this.$store.commit('font/DIMINUI_FONTE')
+      await this.alteraFonte()
+      console.log(this.fontSize)
     }
   }
 }

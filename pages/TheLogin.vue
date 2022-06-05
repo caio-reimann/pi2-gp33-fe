@@ -33,9 +33,18 @@
               required
             />
           </b-form-group>
-          <b-button type="submit" variant="primary">
-            Entrar
-          </b-button>
+          <b-row>
+            <b-col align="left">
+              <b-button type="button" variant="info" @click="registrar">
+                Cadastrar
+              </b-button>
+            </b-col>
+            <b-col align="right">
+              <b-button type="submit" variant="primary">
+                Entrar
+              </b-button>
+            </b-col>
+          </b-row>
         </b-form>
       </b-card-text>
     </b-card>
@@ -58,18 +67,23 @@ export default {
     }
   },
   methods: {
-    async onSubmit () {
-      try {
-        await this.$auth
-          .loginWith('local', {
-            data: this.form
-          })
-        this.$router.push('/')
-      } catch (error) {
-        if (error.response.status === 401) {
-          this.error.msg = error.response.data.detail
-        }
-      }
+    registrar () {
+      this.$router.push('/TheRegister')
+    },
+    onSubmit () {
+      this.$auth
+        .loginWith('local', {
+          data: this.form
+        })
+        .then(() => {
+          this.$router.push('/')
+        })
+        .catch((error) => {
+          console.log(error)
+          // if (error.response.status === 401) {
+          //   this.error.msg = error.response.data.detail
+          // }
+        })
     },
     onReset () {
       this.form.username = ''
