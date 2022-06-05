@@ -69,6 +69,7 @@
       striped
       responsive
       bordered
+      style="background-color: #FFF"
     >
       <b-thead head-variant="light">
         <b-tr>

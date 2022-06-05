@@ -56,14 +56,19 @@
               placeholder="Confirmar Senha"
               required
             />
-            <b-row align-h="end">
-              <b-col class="mt-2" align="right">
-                <b-button type="submit" variant="primary">
-                  Cadastrar
-                </b-button>
-              </b-col>
-            </b-row>
           </b-form-group>
+          <b-row>
+            <b-col align="left">
+              <b-button type="button" variant="info" @click="autenticar">
+                Voltar
+              </b-button>
+            </b-col>
+            <b-col align="right">
+              <b-button type="submit" variant="primary">
+                Cadastrar
+              </b-button>
+            </b-col>
+          </b-row>
         </b-form>
       </b-card-text>
     </b-card>
@@ -91,6 +96,9 @@ export default {
     }
   },
   methods: {
+    autenticar () {
+      this.$router.push('/TheLogin')
+    },
     async onSubmit () {
       if (this.form.cpassword !== this.form.password) {
         this.error.msg = 'As senha não são iguais'
