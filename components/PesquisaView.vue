@@ -17,6 +17,7 @@
               small
               responsive
               bordered
+              style="width: auto;"
             >
               <b-thead head-variant="light">
                 <b-tr>
@@ -29,7 +30,7 @@
                   <b-th>
                     Tipo
                   </b-th>
-                  <b-th />
+                  <b-th style="max-width: 80px;" />
                 </b-tr>
               </b-thead>
               <b-tbody>
@@ -37,7 +38,11 @@
                   <b-td>{{ filtro.valor }}</b-td>
                   <b-td>{{ filtro.campo }}</b-td>
                   <b-td>{{ filtro.tipo }}</b-td>
-                  <b-td><b-button variant="danger" @click="removeFiltro(index)">Remover</b-button></b-td>
+                  <b-td style="width: 60px; text-align: center;">
+                    <b-button variant="danger" @click="removeFiltro(index)">
+                      X
+                    </b-button>
+                  </b-td>
                 </b-tr>
               </b-tbody>
             </b-table-simple>
@@ -91,6 +96,7 @@
   </div>
 </template>
 <script>
+
 export default {
   data () {
     return {
@@ -123,32 +129,22 @@ export default {
       this.getData()
     },
     incluiFiltro () {
-      this.filtros.push({
-        campo: this.selectedColuna,
-        valor: this.valorFiltro,
-        tipo: this.selectedTipo
-      })
-      this.selectedColuna = null
-      this.valorFiltro = null
-      this.selectedTipo = null
-      this.getData()
+      if (this.selectedColuna && this.valorFiltro && this.selectedTipo) {
+        this.filtros.push({
+          campo: this.selectedColuna,
+          valor: this.valorFiltro,
+          tipo: this.selectedTipo
+        })
+        this.selectedColuna = null
+        this.valorFiltro = null
+        this.selectedTipo = null
+        this.getData()
+      }
     },
     async getData () {
       try {
         const dados = await this.$axios.$post('/api/pesquisas', {
           filtros: this.filtros,
-          //   filtros: [
-          //     {
-          //       campo: 'autores',
-          //       valor: 'jo',
-          //       tipo: 'contains'
-          //     },
-          //     {
-          //       campo: 'titulo',
-          //       valor: 'planning',
-          //       tipo: 'iendswith'
-          //     }
-          //   ],
           pagina: this.pagina,
           quantidade: this.porPagina
         })

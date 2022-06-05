@@ -4,14 +4,14 @@
       <b-navbar-brand href="#">
         PI2 - Grupo 33
       </b-navbar-brand>
-          <b-button-group size="sm" class="mr-3">
-            <b-button variant="warning" @click="aumentarFonte">
-              A+
-            </b-button>
-            <b-button variant="warning" @click="diminuirFonte">
-              A-
-            </b-button>
-          </b-button-group>
+      <b-button-group size="sm" class="mr-3">
+        <b-button variant="warning" @click="aumentarFonte">
+          A+
+        </b-button>
+        <b-button variant="warning" @click="diminuirFonte">
+          A-
+        </b-button>
+      </b-button-group>
       <b-navbar-toggle target="nav-collapse" />
 
       <b-collapse id="nav-collapse" is-nav>
