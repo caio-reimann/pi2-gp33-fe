@@ -75,12 +75,18 @@
           <b-th v-for="coluna in colunas" :key="coluna">
             {{ coluna }}
           </b-th>
+          <b-th />
         </b-tr>
       </b-thead>
       <b-tbody>
         <b-tr v-for="item in items" :key="item.id">
           <b-td v-for="coluna in colunas" :key="coluna">
             <span :alt="item[coluna]" :title="item[coluna]">{{ reduzTexto(item[coluna]) }}</span>
+          </b-td>
+          <b-td style="width: 60px; text-align: center;">
+            <b-button variant="danger" @click="removeRegistro(item.id)">
+              X
+            </b-button>
           </b-td>
         </b-tr>
       </b-tbody>
@@ -124,6 +130,16 @@ export default {
     this.getData()
   },
   methods: {
+    async removeRegistro (id) {
+      await this.$axios.$delete('/api/pesquisa/' + id)
+        .then(async (res) => {
+          console.log(res)
+          await this.getData()
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
     removeFiltro (index) {
       this.filtros.splice(index, 1)
       this.getData()
