@@ -6,7 +6,7 @@
     <div class="accordion" role="tablist">
       <b-card no-body class="mb-1">
         <b-card-header header-tag="header" class="p-1" role="tab">
-          <b-button v-b-toggle.accordion-1 block variant="light">
+          <b-button v-b-toggle.accordion-1 block variant="secondary">
             Filtros
           </b-button>
         </b-card-header>
@@ -54,8 +54,8 @@
                 class="mb-2 mr-sm-2 mb-sm-0"
                 placeholder="Filtrar por"
               />
-              <b-form-select id="filtro-coluna" v-model="selectedColuna" :options="colunasFiltro" />
-              <b-form-select id="filtro-tipo" v-model="selectedTipo" :options="tiposFiltro" />
+              <b-form-select id="filtro-coluna" v-model="selectedColuna" class="mb-2 mr-sm-2 mb-sm-0" :options="colunasFiltro" />
+              <b-form-select id="filtro-tipo" v-model="selectedTipo" class="mb-2 mr-sm-2 mb-sm-0" :options="tiposFiltro" />
               <b-button variant="primary" @click="incluiFiltro">
                 Filtrar
               </b-button>
