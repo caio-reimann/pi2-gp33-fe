@@ -74,17 +74,17 @@ export default {
 
             if (linha.length === 11) {
               const dado = {
-                autores: JSON.stringify(linha[0]),
-                titulo: JSON.stringify(linha[1]),
-                fonte_artigo: JSON.stringify(linha[2]),
-                palavras_chave: JSON.stringify(linha[3]),
-                resumo_artigo: JSON.stringify(linha[4]),
-                endereco_autores: JSON.stringify(linha[5]),
-                instituição_vinculo_autores: JSON.stringify(linha[6]),
-                agencia_fomento: JSON.stringify(linha[7]),
+                autores: linha[0],
+                titulo: linha[1],
+                fonte_artigo: linha[2],
+                palavras_chave: linha[3],
+                resumo_artigo: linha[4],
+                endereco_autores: linha[5],
+                instituição_vinculo_autores: linha[6],
+                agencia_fomento: linha[7],
                 contagem_citacoes: linha[8],
-                ano_publicacao: JSON.stringify(linha[9]),
-                areas_pesquisa: JSON.stringify(linha[10])
+                ano_publicacao: linha[9],
+                areas_pesquisa: linha[10]
               }
               this.$axios.$post('/api/pesquisas/carregar', dado)
                 .then((res) => {

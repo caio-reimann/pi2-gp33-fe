@@ -92,6 +92,9 @@
         </b-tr>
       </b-tbody>
     </b-table-simple>
+    <b-alert show class="totalRegistros">
+      Total: {{ totalRegistros }}
+    </b-alert>
     <b-pagination
       v-model="pagina"
       :total-rows="totalRegistros"
@@ -200,3 +203,9 @@ export default {
   }
 }
 </script>
+<style>
+.totalRegistros{
+  font-weight: bold;
+  text-align: center;
+}
+</style>

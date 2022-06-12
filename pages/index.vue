@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="info">
+    <b-navbar toggleable="lg" type="dark" variant="primary">
       <b-navbar-brand href="#">
         PI2 - Grupo 33
       </b-navbar-brand>
@@ -98,12 +98,10 @@ export default {
     async aumentarFonte () {
       await this.$store.commit('font/AUMENTA_FONTE')
       await this.alteraFonte()
-      console.log(this.fontSize)
     },
     async diminuirFonte () {
       await this.$store.commit('font/DIMINUI_FONTE')
       await this.alteraFonte()
-      console.log(this.fontSize)
     }
   }
 }
