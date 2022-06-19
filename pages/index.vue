@@ -106,3 +106,8 @@ export default {
   }
 }
 </script>
+<style scoped>
+  .navbar.navbar-dark.bg-primary{
+      background-color: #5E33C0 !important;
+  }
+</style>
